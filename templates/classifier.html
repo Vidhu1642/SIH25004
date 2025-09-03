@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cattle vs Buffalo Classifier</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="classifier-page">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">🐂 CattleClassifier</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="classifier.html">Classifier</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="dataset.html">Dataset</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- 🔽 Main Layout -->
+  <div class="main-container">
+
+    <!-- Right: Upload + Result -->
+    <div class="app-container">
+      <h2>Cattle vs Buffalo Classifier 🐂🐃</h2>
+
+      <!-- Upload Section -->
+      <div class="upload-section">
+        <!--<div class="image-container">
+          <img src="ClassiferPage.jpg" alt="Cattle or Buffalo" />
+        </div>
+         -->
+        <div class="upload-box" id="uploadBox">
+          <p>Drag & Drop an image here or <span class="browse">Browse</span></p>
+          <input type="file" id="fileInput" accept="image/*">
+        </div>
+      </div>
+     
+      <!-- Preview -->
+      <div class="preview" id="preview">
+        <img id="previewImage" src="#" alt="Preview" style="display:none;">
+      </div>
+
+      <!-- Predict Button -->
+      <button id="predictBtn" disabled>Predict</button>
+
+      <!-- Result -->
+      <div class="result" id="result">
+        <h2>Prediction will appear here...</h2>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+<style>
+  .classifier-page {
+  background: url("/static/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+</style>
+</html>
+

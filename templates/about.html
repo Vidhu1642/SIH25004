@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | Cattle vs Buffalo Classifier</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="about-page">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">🐂 CattleClassifier</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="classifier.html">Classifier</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="dataset.html">Dataset</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- 📝 About Section -->
+  <div class="about-container">
+    <h1>About Our Project</h1>
+    <p class="intro">
+      The <strong>Cattle vs Buffalo Classifier</strong> is an AI-powered tool designed 
+      to distinguish between cattle and buffalo using computer vision and deep learning. 
+      It supports farmers, researchers, and the livestock industry in making informed decisions.
+    </p>
+
+    <div class="about-cards">
+      <div class="card">
+        <h2>✨ Why We Built This</h2>
+        <p>
+          Livestock identification is crucial in rural India for <strong>breeding, healthcare, 
+          and productivity improvement</strong>. This tool provides quick and accurate classification, 
+          helping reduce manual errors and saving time.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>⚙️ How It Works</h2>
+        <p>
+          Users upload an animal image, and our trained <strong>deep learning model</strong> predicts 
+          whether it is a <strong>Cattle</strong> or <strong>Buffalo</strong>.  
+          The system is powered by datasets from reliable sources such as <strong>ICAR-NBAGR</strong>.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>👩‍💻 Our Team</h2>
+        <ul>
+          <li>Team Name: <strong>SIH25005</strong></li>
+          <li>Developers: [Your Names Here]</li>
+          <li>Guide / Mentor: [Faculty / Organization]</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🚀 Future Scope</h2>
+        <p>
+          ✅ Breed-wise classification (e.g., Murrah, Gir, etc.) <br>
+          ✅ Mobile app for farmers <br>
+          ✅ Integration with govt livestock databases <br>
+          ✅ Animal health and productivity predictions
+        </p>
+      </div>
+    </div>
+  </div>
+
+</body>
+<style>
+  .about-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.about-container h1 {
+  font-size: 2rem;
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.about-container .intro {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ✅ Two cards per row */
+  gap: 25px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+  color: #28a745;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.card p, .card ul {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card ul {
+  padding-left: 20px;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .about-cards {
+    grid-template-columns: 1fr; /* Stack on small screens */
+  }
+}
+
+</style>
+</html>

@@ -15,13 +15,13 @@ def main():
     else:
         print("⚠️ requirements.txt not found, skipping installation.")
 
-    # 2. Prepare dataset
-    print("📥 Preparing dataset...")
-    run_command([sys.executable, "dataset_prep.py"])
+    # # 2. Prepare dataset
+    # print("📥 Preparing dataset...")
+    # run_command([sys.executable, "dataset_prep.py"])
 
-    # 3. Train model
-    print("🏋️ Training model...")
-    run_command([sys.executable, "train.py"])
+    # # 3. Train model
+    # print("🏋️ Training model...")
+    # run_command([sys.executable, "train.py"])
 
     print("\n✅ Training completed! Now you can test using:")
     print("   python test_model.py")

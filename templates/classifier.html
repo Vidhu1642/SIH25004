@@ -3,73 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <title>Cattle vs Buffalo Classifier</title>
-  <link rel="stylesheet" href="/static/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* 🌐 Page Background */
+    body.classifier-page {
+      background: url("/static/background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      padding-top: 80px; /* Space for fixed navbar */
+    }
+
+    /* 🏢 App Container */
+    .app-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 25px;
+      border-radius: 20px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+      color: #28a745;
+    }
+
+    /* 📤 Upload Box */
+    .upload-box {
+      border: 2px dashed #28a745;
+      border-radius: 15px;
+      padding: 30px 15px;
+      background: #f9fff6;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .upload-box:hover {
+      background: #eefdea;
+      transform: scale(1.02);
+    }
+
+    .upload-box p {
+      margin: 0;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .upload-box .browse {
+      color: #28a745;
+      font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .upload-box input {
+      display: none;
+    }
+
+    /* 🖼 Preview */
+    .preview {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .preview img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    /* 🔘 Result Box */
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      background: #f3fdf4;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #222;
+      border-left: 5px solid #28a745;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 576px) {
+      .app-container {
+        padding: 20px 15px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 <body class="classifier-page">
- <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">🐂 CattleClassifier</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="classifier.html">Classifier</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="dataset.html">Dataset</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">🐂 CattleClassifier</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="classifier.html">Classifier</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="dataset.html">Dataset</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-  <!-- 🔽 Main Layout -->
-  <div class="main-container">
+  <!-- Main App Container -->
+  <div class="app-container">
 
-    <!-- Right: Upload + Result -->
-    <div class="app-container">
-      <h2>Cattle vs Buffalo Classifier 🐂🐃</h2>
+    <!-- Title -->
+    <h2>Cattle vs Buffalo Classifier 🐂🐃</h2>
 
-      <!-- Upload Section -->
-      <div class="upload-section">
-        <!--<div class="image-container">
-          <img src="ClassiferPage.jpg" alt="Cattle or Buffalo" />
-        </div>
-         -->
-        <div class="upload-box" id="uploadBox">
-          <p>Drag & Drop an image here or <span class="browse">Browse</span></p>
-          <input type="file" id="fileInput" accept="image/*">
-        </div>
-      </div>
-     
-      <!-- Preview -->
-      <div class="preview" id="preview">
-        <img id="previewImage" src="#" alt="Preview" style="display:none;">
-      </div>
+    <!-- Upload Section -->
+    <div class="upload-box" id="uploadBox">
+      <p>Drag & Drop an image here or <span class="browse">Browse</span></p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
 
-      <!-- Predict Button -->
+    <!-- Preview -->
+    <div class="preview" id="preview">
+      <img id="previewImage" src="#" alt="Preview" style="display:none;">
+    </div>
+
+    <!-- Predict Button -->
     <div class="d-flex justify-content-center mt-3">
-  <button id="predictBtn" class="btn btn-success btn-lg" disabled>Predict</button>
-</div>
+      <button id="predictBtn" class="btn btn-success btn-lg" disabled>Predict</button>
+    </div>
 
-
-      <!-- Result -->
-      <div class="result" id="result">
-        <h2>Prediction will appear here...</h2>
-      </div>
+    <!-- Result -->
+    <div class="result" id="result">
+      <h2>Prediction will appear here...</h2>
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="/static/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<style>
-  .classifier-page {
-  background: url("/static/background.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
-
-</style>
 </html>
-

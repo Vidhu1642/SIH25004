@@ -13,47 +13,7 @@ body {
   color: #333;
 }
 
-/* 🌐 Navigation Bar */
-.navbar {
-  background: linear-gradient(90deg, #28a745, #56ab2f);
-  padding: 14px 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
 
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-}
-
-.navbar ul li {
-  display: inline;
-}
-
-.navbar ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 600;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.navbar ul li a:hover,
-.navbar ul li a.active {
-  background: #fff;
-  color: #28a745;
-  transform: scale(1.05);
-}
 
 /* 🖼️ Main Layout */
 .main-container {
@@ -75,10 +35,6 @@ body {
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   transition: transform 0.3s ease;
-}
-.navbar ul li a {
-  color: #fff !important;   /* !important overrides Bootstrap */
-  background: none !important;
 }
 
 

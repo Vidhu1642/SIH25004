@@ -4,9 +4,17 @@ from pathlib import Path
 from sklearn.model_selection import train_test_split
 import shutil
 import random
+import json
 
-# ✅ Force Kaggle to use kaggle.json from current folder
-os.environ["KAGGLE_CONFIG_DIR"] = os.path.abspath(".")
+# ✅ Load Kaggle credentials directly from kaggle.json file in project folder
+KAGGLE_JSON = Path("kaggle.json")
+if not KAGGLE_JSON.exists():
+    raise FileNotFoundError("❌ kaggle.json not found in project folder. Please add it.")
+
+with open(KAGGLE_JSON, "r") as f:
+    creds = json.load(f)
+os.environ["KAGGLE_USERNAME"] = creds["username"]
+os.environ["KAGGLE_KEY"] = creds["key"]
 
 # Dataset details
 DATASET_NAME = "lukex9442/indian-bovine-breeds"
@@ -14,9 +22,8 @@ RAW_DIR = Path("data/Indian Bovine Breeds")   # name used inside the Kaggle zip
 BASE_DIR = Path("data/indian_breeds")         # cleaned dataset output dir
 
 def download_dataset():
-    """Download dataset from Kaggle."""
     if RAW_DIR.exists():
-        print("✅ Raw dataset already exists, skipping download.")
+        print("✅ Dataset already exists, skipping download.")
         return
     print("⬇️ Downloading dataset from Kaggle...")
     subprocess.run([

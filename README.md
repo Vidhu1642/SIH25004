@@ -47,3 +47,5 @@ Some examples include:
 pip install -r requirements.txt
 run_all.py → only installs requirements + prepares dataset + trains the model.
 test_model.py → you run with your test.jpg
+
+<img width="1794" height="888" alt="image" src="https://github.com/user-attachments/assets/865be608-bf2b-4581-9241-94d66e7323f8" />

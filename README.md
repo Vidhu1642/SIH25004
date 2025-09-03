@@ -45,3 +45,5 @@ Some examples include:
 ### 1. Install Dependencies
 ```bash
 pip install -r requirements.txt
+run_all.py → only installs requirements + prepares dataset + trains the model.
+test_model.py → you run with your test.jpg

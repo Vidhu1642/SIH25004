@@ -1,8 +1,10 @@
-# test_model.py
 from pipeline import predict_image
+from pathlib import Path
 
-# Fixed image
-img_path = "test_images/test.jpg"
+TEST_IMAGE = Path("test_images/test.jpg")
 
-label, conf = predict_image(img_path)
-print(f"Prediction: {label} (confidence {conf:.2%})")
+if not TEST_IMAGE.exists():
+    print("❌ Please place a test image at test_images/test.jpg")
+else:
+    breed, confidence = predict_image(str(TEST_IMAGE))
+    print(f"Prediction: {breed} (confidence {confidence:.2f}%)")

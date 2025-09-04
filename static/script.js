@@ -67,7 +67,11 @@ if (document.getElementById("uploadBox")) {
         if (data.error) {
           result.innerHTML = `<h2>Error: ${data.error}</h2>`;
         } else {
-          result.innerHTML = `<h2>🔮 Prediction: ${data.prediction}</h2>`;
+          const prediction = data.prediction;
+          const breedMatch = prediction.match(/^(.+?)\s*\(/);
+          const breedName = breedMatch ? breedMatch[1].trim() : prediction;
+          result.innerHTML = `<h2>🔮 Prediction: ${prediction}</h2>
+          <a href="/breed_detail/${encodeURIComponent(breedName)}" class="btn btn-outline-success mt-3">Read More</a>`;
         }
       })
       .catch((error) => {

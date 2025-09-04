@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Gallery | Cattle & Buffalo Breed Recognizer</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+    .gallery-container {
+      max-width: 900px;
+      margin: 80px auto 40px;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #28a745;
+    }
+
+    .upload-form {
+      margin-bottom: 30px;
+      background: #f9fff6;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+      gap: 20px;
+    }
+
+    @media (max-width: 992px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on medium screens */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .gallery-grid {
+        grid-template-columns: 1fr; /* 1 per row on small screens */
+      }
+    }
+
+    .gallery-item {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      background: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .gallery-item .breed-name {
+      font-weight: bold;
+      color: #28a745;
+      margin-bottom: 5px;
+    }
+
+    .gallery-item .upload-info {
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/index.html">
+        <img src="../static/BreedRecognizer1.png" alt="Logo" width="50" height="50" class="me-2" />
+        <span>Cattle & Buffalo Breed Recognizer</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/classifier.html">Classifier</a></li>
+          <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/dataset.html">Dataset</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="gallery-container">
+    <h1 class="gallery-header">Image Gallery</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Upload Form -->
+    <form class="upload-form" action="/gallery/upload" method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="imageFile" class="form-label">Upload Image</label>
+        <input class="form-control" type="file" id="imageFile" name="imageFile" accept="image/*" required />
+      </div>
+      <div class="mb-3">
+        <label for="breedName" class="form-label">Breed Name</label>
+        <input class="form-control" type="text" id="breedName" name="breedName" placeholder="Enter breed name" required />
+      </div>
+      <button type="submit" class="btn btn-success">Upload</button>
+    </form>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      {% for image in images %}
+        <div class="gallery-item">
+          <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="Breed Image" />
+          <div class="breed-name">{{ image.breed }}</div>
+          <div class="upload-info">Uploaded on {{ image.upload_date }}</div>
+        </div>
+      {% else %}
+        <p>No images uploaded yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-success text-white py-3 mt-5">
+    <div class="container d-flex justify-content-center">
+      &copy; 2025 Cattle & Buffalo Breed Recognizer. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

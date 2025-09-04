@@ -232,5 +232,3 @@ button:hover:not(:disabled) {
     height: 80px !important; /* keep navbar height consistent with logo */
   }
 }
-
-.gallery-row {

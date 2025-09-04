@@ -133,12 +133,17 @@ h2 {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="classifier.html">Classifier</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="dataset.html">Dataset</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{{ url_for('classifier') }}">Classifier</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('gallery') }}">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('dataset') }}">Dataset</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
+          {% if current_user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}" title="Login"><i class="bi bi-person"></i></a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -166,7 +171,7 @@ h2 {
     </div>
 
     <!-- Result -->
-    <div class="result" id="result">
+    <div class="result" id="result" style="min-height: 100px; color: #155724; background-color: #d4edda; border-color: #c3e6cb; padding: 15px; border-radius: 12px;">
       Prediction will appear here...
     </div>
   </div>

@@ -44,40 +44,57 @@ if (document.getElementById("uploadBox")) {
   }
 
   // Real prediction using backend API
-  predictBtn.addEventListener("click", () => {
-    const file = fileInput.files[0];
-    if (!file) {
-      result.innerHTML = "<h2>Please select a file first.</h2>";
-      return;
-    }
-    const formData = new FormData();
-    formData.append("file", file);
+    predictBtn.addEventListener("click", () => {
+      console.log("Predict button clicked");  // Debug log
+      const file = fileInput.files[0];
+      if (!file) {
+        result.innerHTML = "<h2>Please select a file first.</h2>";
+        return;
+      }
+      const formData = new FormData();
+      formData.append("file", file);
 
-    fetch("/predict", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
+      fetch("/predict", {
+        method: "POST",
+        body: formData,
+        credentials: "same-origin"
       })
-      .then((data) => {
-        if (data.error) {
-          result.innerHTML = `<h2>Error: ${data.error}</h2>`;
-        } else {
-          const prediction = data.prediction;
-          const breedMatch = prediction.match(/^(.+?)\s*\(/);
-          const breedName = breedMatch ? breedMatch[1].trim() : prediction;
-          result.innerHTML = `<h2>🔮 Prediction: ${prediction}</h2>
-          <a href="/breed_detail/${encodeURIComponent(breedName)}" class="btn btn-outline-success mt-3">Read More</a>`;
-        }
-      })
-      .catch((error) => {
-        result.innerHTML = `<h2>Error: ${error.message}</h2>`;
-      });
-  });
+        .then((response) => {
+          console.log("Fetch response received", response);  // Debug log
+          return response.json().then(data => ({
+            ok: response.ok,
+            status: response.status,
+            data: data
+          }));
+        })
+        .then((result) => {
+          console.log("Fetch result processed", result);  // Debug log
+          if (!result.ok) {
+            if (result.status === 401) {
+              result.innerHTML = `<h2>🔒 Authentication Required</h2>
+              <p>Please <a href="/login" class="btn btn-primary">Login</a> to use the classifier.</p>`;
+            } else {
+              result.innerHTML = `<h2>Error: ${result.data.error || 'Unknown error'}</h2>`;
+            }
+          } else {
+            if (result.data.error) {
+              result.innerHTML = `<h2>Error: ${result.data.error}</h2>`;
+            } else {
+              const prediction = result.data.prediction;
+              const breedMatch = prediction.match(/^(.+?)\s*\(/);
+              const breedName = breedMatch ? breedMatch[1].trim() : prediction;
+              // Clear previous content before updating
+              result.innerHTML = "";
+              result.innerHTML = `<h2>🔮 Prediction: ${prediction}</h2>
+              <a href="/breed_detail/${encodeURIComponent(breedName)}" class="btn btn-outline-success mt-3">Read More</a>`;
+            }
+          }
+        })
+        .catch((error) => {
+          console.log("Fetch error caught", error);  // Debug log
+          result.innerHTML = `<h2>Error: ${error.message}</h2>`;
+        });
+    });
 }
 
 // Animated counts for dataset page

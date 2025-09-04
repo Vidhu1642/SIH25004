@@ -2,23 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home | Cattle vs Buffalo Classifier</title>
+  <title>Cattle & Buffalo Breed Classifier</title>
   <link rel="stylesheet" href="/static/style.css">
   <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar-brand img {
+      height: 50px;
+      width: 50px;
+      margin-right: 10px;
+    }
+    .main-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin-top: 100px;
+      padding: 20px;
+    }
+    .hero {
+      flex: 1 1 400px;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #34495e;
+    }
+    .left-side {
+      flex: 1 1 400px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .left-side img {
+      width: 250px;
+      height: 250px;
+      margin-bottom: 20px;
+    }
+   .video-container video {
+  width: 100%;
+  max-width: 250px;  /* Decreased from 400px to 250px */
+  height: auto;      /* Maintain aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
 
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
-<body class="index-page">
+<body>
 
-  <!-- 🌐 Navigation Bar -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
     <div class="container">
-   <a class="navbar-brand" href="#">
-    <img src="../static/BreedRecognizer1.png" alt="Cattle & Buffalo Classifier Logo" width="50" height="50" style="margin-left: -70px;">
-</a>
-
-
-
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="../static/BreedRecognizer1.png" alt="Logo">
+       
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,32 +89,35 @@
     </div>
   </nav>
 
-  
-
-  <!-- 🔽 Main Layout -->
+  <!-- Main Section -->
   <div class="main-container">
     
-    <!-- Left: Video -->
-    <div class="video-container">
-      <video autoplay muted loop>
-        <source src="/static/Video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <!-- Left Side: Logo + Video -->
+    <div class="left-side">
+     
+      <div class="video-container">
+        <video autoplay muted loop>
+          <source src="/static/Video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
 
-    <!-- Right: Hero Section -->
+    <!-- Right Side: Hero Text -->
     <div class="hero">
-      <h1>🐂🐃 Cattle vs Buffalo Classifier</h1>
+      <h1>Image-Based Animal Type Classification</h1>
       <p>
-        An AI-powered tool to automatically classify whether an animal is a
-        <strong>Cattle</strong> or a <strong>Buffalo</strong>.
+        AI-powered tool to automatically classify Breed type of <strong>Cattle</strong> and <strong>Buffalo</strong> from images.
+        Empowering farmers, researchers, and livestock enthusiasts to make informed decisions.
       </p>
-    <div class="text-center mt-3">
-  <a href="classifier.html" class="btn btn-success btn-lg">Try Classifier</a>
-</div>
-
+      <div class="mt-4">
+        <a href="classifier.html" class="btn btn-success btn-lg me-2">Try Classifier</a>
+        <a href="about.html" class="btn btn-outline-success btn-lg">Learn More</a>
+      </div>
     </div>
+
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

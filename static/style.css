@@ -216,3 +216,19 @@ button:hover:not(:disabled) {
   
   
 }
+
+/* Custom styles for logo in navbar */
+@media (min-width: 769px) {
+  .navbar-brand img {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: contain;
+    margin-left: -15px; /* shift logo more to the left */
+  }
+  .navbar-brand {
+    margin-left: -15px; /* shift brand container left */
+  }
+  .navbar {
+    height: 80px !important; /* keep navbar height consistent with logo */
+  }
+}

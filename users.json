@@ -1,0 +1,7 @@
+{
+    "3a7b7293-bfe6-49fe-9047-476f0ab19a2d": {
+        "username": "Vidhi",
+        "email": "test2@gmail.com",
+        "password_hash": "scrypt:32768:8:1$TwCzYMUgjqAPZgKt$e5d477f596a573f6697efbc91600a3751a50276e178a094c5e438ce3078f3bfc83b4ce899c370683d818d1114154dee93e020834e5ac9002a7add08ee2f555a4"
+    }
+}
